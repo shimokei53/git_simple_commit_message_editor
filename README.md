@@ -15,3 +15,19 @@ $ git commit
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 hoge
 ```
+
+## How to use
+
+```
+$ chmod +x gscme
+$ mv gscme /usr/local/bin/gscme
+$ git config --local core.editor gscme
+```
+
+mergeやrebaseの際はエディタを起動します。
+`CORE_EDITOR`という項目があるので、そちらへエディタを設定してください。
+
+## 表示される質問リストについて
+`.gscme_msglist` というファイルを自動で作成します。
+一行毎に表示されるので、お好みに合わせて編集してください。
+チーム内でこのファイルのみ共有すればいいかなと思います。
