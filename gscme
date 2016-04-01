@@ -22,12 +22,16 @@ if [[ ! -r .gscme_msglist ]]; then
 EOF
 fi
 
+COMMIT_MSG=""
+
 exec 3< .gscme_msglist
 while read line 0<&3
 do
     /bin/echo -n "$line > "
     read msg
-    /bin/echo -n "$msg " >> $1
+    COMMIT_MSG="${COMMIT_MSG} ${msg}"
 done
 exec 3<&-
+
+/bin/echo -n $COMMIT_MSG >> $1
 exit 0
