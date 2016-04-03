@@ -5,7 +5,7 @@
 対話的にコミットメッセージを記入できるスクリプトです。
 チーム内でコミットメッセージに書いて欲しいことをゆるく統一したい場合などに。
 
-![](https://raw.githubusercontent.com/shimokei53/git_simple_commit_message_editor/master/Untitled.gif)
+![](https://raw.githubusercontent.com/shimokei53/git_simple_commit_message_editor/master/tty.gif)
 
 ## How to use
 
