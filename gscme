@@ -12,11 +12,14 @@ if [[ ! "$1" = *COMMIT_EDITMSG ]]; then
     exit 0
 fi
 
+CURRENT_DIR=$(cd $(dirname $0); pwd)
+MSGLIST_FILE=$CURRENT_DIR/.gscme_msglist
+
 # .gscme_msglistファイルが無い場合は作る
 # デフォルトの質問リストをセットする
-if [[ ! -r .gscme_msglist ]]; then
+if [[ ! -r $MSGLIST_FILE ]]; then
     /bin/echo "please edit .gscme_msglist file."
-    cat <<EOF > .gscme_msglist
+    cat <<EOF > $MSGLIST_FILE
 どのような変更ですか？
 この変更によって,どんなことが起きますか？
 なぜその変更が必要でしたか？
@@ -26,7 +29,7 @@ fi
 
 COMMIT_MSG=""
 
-exec 3< .gscme_msglist
+exec 3< $MSGLIST_FILE
 while read line 0<&3
 do
     /bin/echo -n "$line > "
