@@ -27,16 +27,22 @@ if [[ ! -r $MSGLIST_FILE ]]; then
 EOF
 fi
 
-COMMIT_MSG=""
-
+SUBJECT=""
+BODY=""
+count=1
 exec 3< $MSGLIST_FILE
 while read line 0<&3
 do
     /bin/echo -n "$line > "
     read msg
-    COMMIT_MSG="${COMMIT_MSG} ${msg}"
+    if [ $count -eq 1 ]; then
+        SUBJECT="${msg}"$'\n'$'\n'
+    else
+        BODY="${BODY} ${msg}"
+    fi
+    count=$((count + 1))
 done
 exec 3<&-
 
-/bin/echo -n $COMMIT_MSG >> $1
+/bin/echo -n "$SUBJECT${BODY/ /}" >> $1
 exit 0
