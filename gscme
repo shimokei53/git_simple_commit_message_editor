@@ -32,6 +32,9 @@ COMMIT_MSG=""
 exec 3< $MSGLIST_FILE
 while read line 0<&3
 do
+    if [[ ${line} == \#* ]]; then
+        continue
+    fi
     /bin/echo -n "$line > "
     read msg
     COMMIT_MSG="${COMMIT_MSG} ${msg}"
