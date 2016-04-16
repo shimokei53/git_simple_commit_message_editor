@@ -14,17 +14,13 @@ fi
 
 CURRENT_DIR=$(cd $(dirname $0); pwd)
 MSGLIST_FILE=$CURRENT_DIR/.gscme_msglist
+SAMPLE_MSGLIST_FILE=$CURRENT_DIR/sample_msglist/.gscme_msglist_present_tense_subject
 
 # .gscme_msglistファイルが無い場合は作る
 # デフォルトの質問リストをセットする
 if [[ ! -r $MSGLIST_FILE ]]; then
     /bin/echo "please edit .gscme_msglist file."
-    cat <<EOF > $MSGLIST_FILE
-どのような変更ですか？
-この変更によって,どんなことが起きますか？
-なぜその変更が必要でしたか？
-参考URLなど（あれば）
-EOF
+    cat $SAMPLE_MSGLIST_FILE > $MSGLIST_FILE
 fi
 
 COMMIT_MSG=""
