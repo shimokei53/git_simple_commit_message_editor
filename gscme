@@ -35,11 +35,14 @@ do
     if [[ ${line} == \#* ]]; then
         continue
     fi
-    /bin/echo -n "$line > "
-    read msg
-    COMMIT_MSG="${COMMIT_MSG} ${msg}"
+    if [[ ${line} ]]; then
+        /bin/echo -n "$line > "
+        read msg
+        COMMIT_MSG="${COMMIT_MSG}${msg}"
+    fi
+    COMMIT_MSG="${COMMIT_MSG}\n"
 done
 exec 3<&-
 
-/bin/echo -n $COMMIT_MSG >> $1
+echo $COMMIT_MSG >> $1
 exit 0
